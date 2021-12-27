@@ -1,7 +1,8 @@
 # React Battery Gauge
 
 This library is a SVG based react component for displaying battery status, ultra lightweight, highly customizable with zero dependencies
-
+## Demo
+![Battery Gauge Demo](demo/demo1.gif)
 ## Storybook Demo
 
 [Click here](https://61c950606cc89f003a4379c2-jnjkdtdbkn.chromatic.com/?path=/story/gauge-battery--basic)
@@ -31,6 +32,7 @@ import BatteryGauge from 'react-battery-gauge'
 | animated      | Enable animation on mount                    | false        | boolean                   |
 | customization | All individual components customization      | GaugeCustom  | Partial<TGaugeCustom>     |
 
+## Override any customization default values:
 ```js
 {
   batteryBody: {
@@ -51,7 +53,7 @@ import BatteryGauge from 'react-battery-gauge'
     lowBatteryValue: 15,
     lowBatteryFill: 'red',
     outerGap: 1,
-    noOfCells: 1,
+    noOfCells: 1, // more than 1, will create cell battery
     interCellsGap: 1
   },
   readingText: {
