@@ -20,11 +20,11 @@ export interface Props
   /**
    * Meter value range [0-100]
    */
-  value: TGaugeCanvas['padding'];
+  value: TGaugeCanvas['value'];
   /**
    * Meter max value
    */
-  maxValue: TGaugeCanvas['maxValue'];
+  maxValue?: TGaugeCanvas['maxValue'];
   /**
    * Changes orientation, keeping text horizontal
    */
@@ -36,11 +36,11 @@ export interface Props
   /**
    * Enable animation on mount
    */
-  animated: boolean;
+  animated?: boolean;
   /**
    * All components customization
    */
-  customization: Partial<TGaugeCustom>;
+  customization?: Partial<TGaugeCustom>;
 }
 
 export const BatteryGauge: FC<Props> = ({
@@ -99,3 +99,5 @@ export const BatteryGauge: FC<Props> = ({
     </Canvas>
   );
 };
+
+export default BatteryGauge

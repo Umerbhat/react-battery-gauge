@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -19,7 +19,8 @@
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic --project-token=${CHROMATIC_PROJECT_TOKEN}"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -59,13 +60,20 @@
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
     "babel-loader": "^8.2.3",
+    "chromatic": "^6.3.3",
+    "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
     "size-limit": "^6.0.4",
+    "storybook-readme": "^5.0.9",
     "tsdx": "^0.14.1",
     "tslib": "^2.3.1",
     "typescript": "^4.4.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Umerbhat/react-battery-gauge.git"
   }
 }
