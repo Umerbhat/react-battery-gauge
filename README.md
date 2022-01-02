@@ -23,14 +23,16 @@ import BatteryGauge from 'react-battery-gauge'
 
 ## Options
 
-| Name          | Description                                  | Default      | type                      |
-|---------------|----------------------------------------------|--------------|---------------------------|
-| value         | Meter value range [0-maxValue(100)]          | 50           | number                    |
-| maxValue      | Meter max value                              | 100          | number                    |
-| orientation   | Changes orientation, keeping text horizontal | "horizontal" | "horizontal"\| "vertical" |
-| padding       | Padding of gauge within canvas               | 5            | number                    |
-| animated      | Enable animation on mount                    | false        | boolean                   |
-| customization | All individual components customization      | GaugeCustom  | Partial<TGaugeCustom>     |
+| Name          | Description                                                                                                                                              | Default      | type                      |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|---------------------------|
+| value         | Meter value range [0-maxValue(100)]                                                                                                                      | 50           | number                    |
+| maxValue      | Meter max value                                                                                                                                          | 100          | number                    |
+| orientation   | Changes orientation, keeping text horizontal                                                                                                             | "horizontal" | "horizontal"\| "vertical" |
+| padding       | Padding of gauge within canvas                                                                                                                           | 5            | number                    |
+| size          | We don't like passing both width and height, can create unusual looking shape. Size will help gauge to achieve the desired size maintaining aspect ratio | 300          | number                    |
+| aspectRatio   | Gauge aspect ratio, At padding 0 easy to create battery types -> D = 0.56, C = 0.52, AA = 0.28, AAA = 0.23, AAAA = 0.19 , default C battery              | 0.52         | number                    |
+| animated      | Enable animation on mount                                                                                                                                | false        | boolean                   |
+| customization | All individual components customisation                                                                                                                  | GaugeCustom  | Partial<TGaugeCustom>     |
 
 ## Override any customization default values:
 ```js
