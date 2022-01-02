@@ -10,7 +10,7 @@ import { useLevelDimensions } from '../hooks/useLevelDimensions';
 import { checkLowBattery, getVisibleCellsCount } from '../utils';
 
 export const BatteryLevel = () => {
-  const { value, maxValue, customization } = useGaugeContext();
+  const { value, maxValue, customization, clipPathHash } = useGaugeContext();
   const { x, y, width, height } = useLevelDimensions();
   const {
     fill,
@@ -37,7 +37,7 @@ export const BatteryLevel = () => {
   return (
     <g>
       <defs>
-        <clipPath id={CLIP_METER}>
+        <clipPath id={CLIP_METER + clipPathHash}>
           <rect
             x={x}
             y={y}
@@ -48,7 +48,7 @@ export const BatteryLevel = () => {
           />
         </clipPath>
         {noOfCells < 2 && gradFill && (
-          <linearGradient id="levelGradient">
+          <linearGradient id={'levelGradient' + clipPathHash}>
             {gradFill.map((item) => {
               return <stop offset={item.offset + '%'} stopColor={item.color} />;
             })}
@@ -60,17 +60,17 @@ export const BatteryLevel = () => {
           {gradFill ? (
             <rect
               className={BATTERY_METER}
-              clipPath={`url(#${CLIP_METER_FILLED})`}
+              clipPath={`url(#${CLIP_METER_FILLED + clipPathHash})`}
               x={x}
               y={y}
               width={width}
               height={height}
-              fill={'url(#levelGradient)'}
+              fill={`url(#levelGradient${clipPathHash})`}
             />
           ) : (
             <rect
               className={BATTERY_METER}
-              clipPath={`url(#${CLIP_METER})`}
+              clipPath={`url(#${CLIP_METER + clipPathHash})`}
               x={x}
               y={y}
               width={(width * value) / maxValue}
@@ -88,7 +88,7 @@ export const BatteryLevel = () => {
             return (
               <rect
                 className={BATTERY_METER}
-                clipPath={`url(#${CLIP_METER})`}
+                clipPath={`url(#${CLIP_METER + clipPathHash})`}
                 x={x + ((width + interCellsGap) / noOfCells) * index}
                 y={y}
                 width={width / noOfCells - interCellsGap}

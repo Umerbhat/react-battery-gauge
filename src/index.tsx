@@ -3,20 +3,23 @@ import {
   BATTERY_BODY,
   BATTERY_CAP,
   BATTERY_METER,
-  CANVAS_HEIGHT,
   CANVAS_WIDTH,
   READING_TEXT,
 } from './lib/constants';
 import { Battery } from './lib/components/Battery';
 import { Canvas } from './lib/Canvas';
 import { BatteryLevel } from './lib/components/BatteryLevel';
-import { TGaugeCanvas, TGaugeCustom } from './typings';
+import { DeepPartial, TGaugeCanvas, TGaugeCustom } from './typings';
 import { defaultState } from './lib/store/context';
 import { ReadingText } from './lib/components/ReadingText';
 import { useCounterAnimation } from './lib/hooks/useCounterAnimation';
+import { useClipPathHash } from './lib/hooks/useClipPathHash';
 
 export interface Props
-  extends Omit<React.SVGProps<SVGSVGElement>, 'orientation'> {
+  extends Omit<
+    React.SVGProps<SVGSVGElement>,
+    'orientation'
+  > {
   /**
    * Meter value range [0-100]
    */
@@ -29,6 +32,23 @@ export interface Props
    * Changes orientation, keeping text horizontal
    */
   orientation?: TGaugeCanvas['orientation'];
+
+  /**
+   * We don't like passing both width and height, can create unusual looking shape. 
+   * Size will help gauge to achieve the desired size maintaining aspect ratio
+   */
+  size?: number;
+  /**
+   * Gauge aspect ratio,
+   * At padding 0 easy to create battery types ->
+   * D = 0.56,
+   * C = 0.52,
+   * AA = 0.28,
+   * AAA = 0.23,
+   * AAAA = 0.19 ,
+   * default C battery
+   */
+  aspectRatio?: number;
   /**
    * Padding of gauge within canvas
    */
@@ -40,12 +60,12 @@ export interface Props
   /**
    * All components customization
    */
-  customization?: Partial<TGaugeCustom>;
+  customization?: DeepPartial<TGaugeCustom>;
 }
 
 export const BatteryGauge: FC<Props> = ({
-  width = 300,
-  height = 168,
+  size = 300,
+  aspectRatio = defaultState.aspectRatio,
   children,
   padding = defaultState.padding,
   value = defaultState.value,
@@ -55,6 +75,10 @@ export const BatteryGauge: FC<Props> = ({
   animated = defaultState.animated,
   ...restSvgProps
 }) => {
+  const canvasHeight = Math.round(CANVAS_WIDTH * aspectRatio);
+  const height = Math.round(size * aspectRatio);
+  const clipPathHash = useClipPathHash()
+
   const allCustomization: TGaugeCustom = {
     [BATTERY_BODY]: {
       ...defaultState.customization[BATTERY_BODY],
@@ -73,31 +97,36 @@ export const BatteryGauge: FC<Props> = ({
       ...customization[READING_TEXT],
     },
   };
+  const canvasPadding = allCustomization.batteryBody.strokeWidth / 2 + padding;
   const newValue = useCounterAnimation({ value, enabled: animated });
   return (
     <Canvas
-      width={width}
-      height={height}
+      width={size}
+      height={orientation === 'vertical' ? size : height}
       canvasWidth={CANVAS_WIDTH}
-      canvasHeight={CANVAS_HEIGHT}
-      padding={padding}
+      canvasHeight={canvasHeight}
+      padding={canvasPadding}
       value={newValue}
-      maxValue={maxValue}
+      maxValue={!maxValue ? 1 : maxValue}
       orientation={orientation}
       customization={allCustomization}
-      transform={
-        orientation === 'vertical'
-          ? `rotate(-90,${CANVAS_HEIGHT / 2},${CANVAS_HEIGHT / 2})`
-          : ''
-      }
+      clipPathHash={clipPathHash}
       {...restSvgProps}
     >
-      {children}
-      <Battery />
-      <BatteryLevel />
-      <ReadingText />
+      <g
+        transform={
+          orientation === 'vertical'
+            ? `rotate(-90,${CANVAS_WIDTH / 2},${canvasHeight / 2})` // rotate at right top corner
+            : ''
+        }
+      >
+        {children}
+        <Battery />
+        <BatteryLevel />
+        <ReadingText />
+      </g>
     </Canvas>
   );
 };
 
-export default BatteryGauge
+export default BatteryGauge;

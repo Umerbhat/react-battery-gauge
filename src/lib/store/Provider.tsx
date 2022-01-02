@@ -3,7 +3,7 @@ import { TGaugeCanvas } from '../../typings';
 import { Context } from './context';
 
 interface Props {
-  value: TGaugeCanvas;
+  value: TGaugeCanvas & {clipPathHash: string};
 }
 
 export const CanvasProvider: FC<Props> = ({ children, value }) => {

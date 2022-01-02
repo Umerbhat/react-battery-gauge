@@ -15,7 +15,13 @@ import {
 } from '../utils';
 
 export const ReadingText = () => {
-  const { value, maxValue, orientation, customization } = useGaugeContext();
+  const {
+    value,
+    maxValue,
+    orientation,
+    customization,
+    clipPathHash,
+  } = useGaugeContext();
   const { x, y, width, height } = useLevelDimensions();
   const {
     fontFamily,
@@ -64,7 +70,7 @@ export const ReadingText = () => {
   return (
     <g>
       <defs>
-        <clipPath id={CLIP_METER_FILLED}>
+        <clipPath id={CLIP_METER_FILLED + clipPathHash}>
           <rect
             x={x}
             y={y}
@@ -74,10 +80,10 @@ export const ReadingText = () => {
                 : width * valueRatio
             }
             height={height}
-            clipPath={`url(#${CLIP_METER})`}
+            clipPath={`url(#${CLIP_METER + clipPathHash})`}
           />
         </clipPath>
-        <clipPath id={CLIP_METER_EMPTY}>
+        <clipPath id={CLIP_METER_EMPTY + clipPathHash}>
           <rect
             x={
               x +
@@ -92,12 +98,12 @@ export const ReadingText = () => {
                 : width * (1 - valueRatio)
             }
             height={height}
-            clipPath={`url(#${CLIP_METER})`}
+            clipPath={`url(#${CLIP_METER + clipPathHash})`}
           />
         </clipPath>
       </defs>
-      {renderTextElement(darkContrastColor, CLIP_METER_FILLED)}
-      {renderTextElement(lightContrastColor, CLIP_METER_EMPTY)}
+      {renderTextElement(darkContrastColor, CLIP_METER_FILLED + clipPathHash)}
+      {renderTextElement(lightContrastColor, CLIP_METER_EMPTY + clipPathHash)}
     </g>
   );
 };
