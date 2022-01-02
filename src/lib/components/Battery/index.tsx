@@ -9,6 +9,7 @@ export const Battery = () => {
     canvasHeight,
     padding,
     customization,
+    clipPathHash,
   } = useGaugeContext();
 
   const {
@@ -32,7 +33,7 @@ export const Battery = () => {
   return (
     <g>
       <defs>
-        <clipPath id={CLIP_CAP}>
+        <clipPath id={CLIP_CAP + clipPathHash}>
           <rect
             x={canvasWidth - padding - capWidth}
             y={(canvasHeight - capHeight - capStrokeWidth) / 2}
@@ -55,7 +56,7 @@ export const Battery = () => {
         stroke={bodyStrokeColor}
       />
       <rect
-        clipPath={`url(#${CLIP_CAP})`}
+        clipPath={`url(#${CLIP_CAP + clipPathHash})`}
         className={BATTERY_CAP}
         x={canvasWidth - padding - capWidth - capCornerRadius}
         y={(canvasHeight - capHeight) / 2}

@@ -39,4 +39,9 @@ export type TGaugeCanvas = {
   maxValue: number;
   orientation: 'horizontal' | 'vertical';
   customization: TGaugeCustom;
+  clipPathHash: string;
+};
+
+export type DeepPartial<T> = {
+  [P in keyof T]?: Partial<T[P]>;
 };

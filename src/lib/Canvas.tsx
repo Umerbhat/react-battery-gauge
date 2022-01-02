@@ -16,6 +16,7 @@ export const Canvas = (props: TCanvasProps) => {
     maxValue,
     orientation,
     customization,
+    clipPathHash,
     ...otherSvgProps
   } = props;
   return (
@@ -28,6 +29,7 @@ export const Canvas = (props: TCanvasProps) => {
         maxValue,
         orientation,
         customization,
+        clipPathHash,
       }}
     >
       <svg viewBox={`0 0 ${canvasWidth} ${canvasHeight}`} {...otherSvgProps}>

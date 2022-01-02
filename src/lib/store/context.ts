@@ -1,13 +1,15 @@
-import { CANVAS_HEIGHT, CANVAS_WIDTH } from './../constants/index';
+import { BATTERY_ASPECT_RATIO, CANVAS_WIDTH } from './../constants/index';
 import { createContext } from 'react';
 import { TGaugeCanvas } from '../../typings';
 
 export const defaultState = {
   canvasWidth: CANVAS_WIDTH,
-  canvasHeight: CANVAS_HEIGHT,
-  padding: 5,
+  canvasHeight: CANVAS_WIDTH * BATTERY_ASPECT_RATIO,
+  aspectRatio: BATTERY_ASPECT_RATIO,
+  padding: 0,
   value: 50,
   maxValue: 100,
+  clipPathHash: "",
   orientation: 'horizontal' as TGaugeCanvas['orientation'],
   animated: false,
   customization: {

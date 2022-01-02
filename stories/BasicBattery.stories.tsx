@@ -61,6 +61,41 @@ Animated.args = {
   animated: true,
 };
 
+export const ThinStrokeCustomization = Template.bind({});
+
+ThinStrokeCustomization.args = {
+  children: (
+    <defs>
+      <filter id="shadow">
+        <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
+      </filter>
+    </defs>
+  ),
+  orientation: 'vertical',
+  customization: {
+    batteryBody: {
+      strokeColor: '#333',
+      strokeWidth: 2,
+      cornerRadius: 2,
+    },
+    batteryCap: {
+      strokeColor: '#333',
+      cornerRadius: 1,
+      strokeWidth: 2,
+      capToBodyRatio: 0.3,
+    },
+    batteryMeter: {
+      outerGap: 1,
+      noOfCells: 10,
+    },
+    readingText: {
+      lowBatteryColor: 'red',
+      fontSize: 16,
+      style: { filter: 'url(#shadow)' },
+    },
+  },
+};
+
 export const Customized = Template.bind({});
 
 Customized.args = {
@@ -91,6 +126,114 @@ Customized.args = {
       lowBatteryColor: 'red',
       fontFamily: 'Arial',
       fontSize: 12,
+    },
+  },
+};
+
+export const SmallSize = Template.bind({});
+
+SmallSize.args = {
+  children: (
+    <defs>
+      <filter id="shadow">
+        <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
+      </filter>
+    </defs>
+  ),
+  orientation: 'vertical',
+  size: 150,
+  customization: {
+    batteryBody: {
+      strokeColor: '#333',
+      strokeWidth: 2,
+      cornerRadius: 2,
+    },
+    batteryCap: {
+      strokeColor: '#333',
+      cornerRadius: 1,
+      strokeWidth: 2,
+      capToBodyRatio: 0.3,
+    },
+    batteryMeter: {
+      outerGap: 1,
+      noOfCells: 10,
+    },
+    readingText: {
+      lowBatteryColor: 'red',
+      fontSize: 16,
+      style: { filter: 'url(#shadow)' },
+    },
+  },
+};
+
+export const LargeSize = Template.bind({});
+
+LargeSize.args = {
+  children: (
+    <defs>
+      <filter id="shadow">
+        <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
+      </filter>
+    </defs>
+  ),
+  orientation: 'vertical',
+  size: 500,
+  customization: {
+    batteryBody: {
+      strokeColor: '#333',
+      strokeWidth: 2,
+      cornerRadius: 2,
+    },
+    batteryCap: {
+      strokeColor: '#333',
+      cornerRadius: 1,
+      strokeWidth: 2,
+      capToBodyRatio: 0.3,
+    },
+    batteryMeter: {
+      outerGap: 1,
+      noOfCells: 10,
+    },
+    readingText: {
+      lowBatteryColor: 'red',
+      fontSize: 16,
+      style: { filter: 'url(#shadow)' },
+    },
+  },
+};
+
+export const AspectRatio = Template.bind({});
+
+AspectRatio.args = {
+  children: (
+    <defs>
+      <filter id="shadow">
+        <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" />
+      </filter>
+    </defs>
+  ),
+
+  aspectRatio: 0.28,
+  customization: {
+    batteryBody: {
+      strokeColor: '#333',
+      strokeWidth: 2,
+      cornerRadius: 2,
+    },
+    batteryCap: {
+      strokeColor: '#333',
+      cornerRadius: 1,
+      strokeWidth: 2,
+      capToBodyRatio: 0.4,
+    },
+    batteryMeter: {
+      outerGap: 1,
+      noOfCells: 10,
+    },
+    readingText: {
+      lowBatteryColor: 'red',
+      fontSize: 12,
+      style: { filter: 'url(#shadow)' },
     },
   },
 };
