@@ -1,8 +1,10 @@
 # React Battery Gauge
 
 This library is a SVG based react component for displaying battery status, ultra lightweight, highly customizable with zero dependencies
-## Demo
-![Battery Gauge Demo](demo/demo1.gif)
+## Live Demo
+[Click here](https://umerbhat.github.io/react-battery-gauge/)
+## Short Demo
+![Short Demo](demo/demo1.gif)
 ## Storybook Demo
 
 [Click here](https://61c950606cc89f003a4379c2-jnjkdtdbkn.chromatic.com/?path=/story/gauge-battery--basic)
@@ -32,6 +34,7 @@ import BatteryGauge from 'react-battery-gauge'
 | size          | We don't like passing both width and height, can create unusual looking shape. Size will help gauge to achieve the desired size maintaining aspect ratio | 300          | number                    |
 | aspectRatio   | Gauge aspect ratio, At padding 0 easy to create battery types -> D = 0.56, C = 0.52, AA = 0.28, AAA = 0.23, AAAA = 0.19 , default C battery              | 0.52         | number                    |
 | animated      | Enable animation on mount                                                                                                                                | false        | boolean                   |
+| charging      | Enable charging mode                                                                                                                                 | false        | boolean                   |
 | customization | All individual components customisation                                                                                                                  | GaugeCustom  | Partial<TGaugeCustom>     |
 
 ## Override any customization default values:
@@ -65,7 +68,20 @@ import BatteryGauge from 'react-battery-gauge'
     fontFamily: 'Helvetica',
     fontSize: 14,
     showPercentage: true
-  }
+  },
+  chargingFlash: {
+    scale: undefined,
+    fill: 'orange',
+    animated: true,
+    animationDuration: 1000
+  },
 }
 ```
+
+
+## License
+
+MIT
+
+**Free Software, Your contribution is welcome!**
 

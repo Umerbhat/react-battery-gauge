@@ -4,6 +4,7 @@ import {
   BATTERY_CAP,
   BATTERY_METER,
   CANVAS_WIDTH,
+  CHARGING_FLASH,
   READING_TEXT,
 } from './lib/constants';
 import { Battery } from './lib/components/Battery';
@@ -14,12 +15,10 @@ import { defaultState } from './lib/store/context';
 import { ReadingText } from './lib/components/ReadingText';
 import { useCounterAnimation } from './lib/hooks/useCounterAnimation';
 import { useClipPathHash } from './lib/hooks/useClipPathHash';
+import Charging from './lib/components/Charging';
 
 export interface Props
-  extends Omit<
-    React.SVGProps<SVGSVGElement>,
-    'orientation'
-  > {
+  extends Omit<React.SVGProps<SVGSVGElement>, 'orientation'> {
   /**
    * Meter value range [0-100]
    */
@@ -34,7 +33,7 @@ export interface Props
   orientation?: TGaugeCanvas['orientation'];
 
   /**
-   * We don't like passing both width and height, can create unusual looking shape. 
+   * We don't like passing both width and height, can create unusual looking shape.
    * Size will help gauge to achieve the desired size maintaining aspect ratio
    */
   size?: number;
@@ -58,6 +57,10 @@ export interface Props
    */
   animated?: boolean;
   /**
+   * Battery is charging
+   */
+  charging?: boolean;
+  /**
    * All components customization
    */
   customization?: DeepPartial<TGaugeCustom>;
@@ -73,11 +76,19 @@ export const BatteryGauge: FC<Props> = ({
   customization = defaultState.customization,
   orientation = defaultState.orientation,
   animated = defaultState.animated,
+  charging = defaultState.charging,
   ...restSvgProps
 }) => {
   const canvasHeight = Math.round(CANVAS_WIDTH * aspectRatio);
   const height = Math.round(size * aspectRatio);
-  const clipPathHash = useClipPathHash()
+  const clipPathHash = useClipPathHash();
+  const noLowBatteryColor = charging
+    ? {
+        lowBatteryFill:
+          customization[BATTERY_METER]?.fill ||
+          defaultState.customization[BATTERY_METER].fill,
+      }
+    : {};
 
   const allCustomization: TGaugeCustom = {
     [BATTERY_BODY]: {
@@ -91,14 +102,29 @@ export const BatteryGauge: FC<Props> = ({
     [BATTERY_METER]: {
       ...defaultState.customization[BATTERY_METER],
       ...customization[BATTERY_METER],
+      ...noLowBatteryColor,
     },
     [READING_TEXT]: {
       ...defaultState.customization[READING_TEXT],
       ...customization[READING_TEXT],
     },
+    [CHARGING_FLASH]: {
+      ...defaultState.customization[CHARGING_FLASH],
+      ...customization[CHARGING_FLASH],
+    },
   };
   const canvasPadding = allCustomization.batteryBody.strokeWidth / 2 + padding;
-  const newValue = useCounterAnimation({ value, enabled: animated });
+  const newValue = useCounterAnimation({
+    value: value,
+    enabled: animated,
+  });
+  const chargingValue = useCounterAnimation({
+    startValue: 1,
+    value: maxValue,
+    enabled: charging,
+    iterationCount: 'infinite',
+    duration: 2000,
+  });
   return (
     <Canvas
       width={size}
@@ -106,7 +132,7 @@ export const BatteryGauge: FC<Props> = ({
       canvasWidth={CANVAS_WIDTH}
       canvasHeight={canvasHeight}
       padding={canvasPadding}
-      value={newValue}
+      value={charging ? chargingValue : newValue}
       maxValue={!maxValue ? 1 : maxValue}
       orientation={orientation}
       customization={allCustomization}
@@ -123,7 +149,7 @@ export const BatteryGauge: FC<Props> = ({
         {children}
         <Battery />
         <BatteryLevel />
-        <ReadingText />
+        {charging ? <Charging /> : <ReadingText />}
       </g>
     </Canvas>
   );

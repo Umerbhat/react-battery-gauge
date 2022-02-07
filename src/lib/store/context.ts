@@ -9,9 +9,10 @@ export const defaultState = {
   padding: 0,
   value: 50,
   maxValue: 100,
-  clipPathHash: "",
+  clipPathHash: '',
   orientation: 'horizontal' as TGaugeCanvas['orientation'],
   animated: false,
+  charging: false,
   customization: {
     batteryBody: {
       strokeWidth: 4,
@@ -41,6 +42,12 @@ export const defaultState = {
       fontFamily: 'Helvetica',
       fontSize: 14,
       showPercentage: true,
+    },
+    chargingFlash: {
+      scale: undefined,
+      fill: 'orange',
+      animated: true,
+      animationDuration: 1000
     },
   },
 };

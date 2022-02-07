@@ -13,3 +13,9 @@ export function getVisibleCellsCount(
 ) {
   return Math.floor(Math.abs(value / maxValue) * noOfCells);
 }
+export const timing = (progress: number, easing?: 'linear') => {
+  if (easing === 'linear') {
+    return progress;
+  }
+  return progress;
+};

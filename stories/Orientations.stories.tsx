@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import { BatteryGauge as Battery, Props } from '../src';
 
 const meta: Meta = {
-  title: 'Gauge/Battery',
+  title: 'Gauge/Battery/Orientation',
   component: Battery,
   argTypes: {},
   parameters: {
@@ -17,23 +17,7 @@ const Template: Story<Props> = (args) => <Battery {...args} />;
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
-export const Basic = Template.bind({});
 
-Basic.args = {};
+export const OrientationVertical = Template.bind({});
 
-export const Animated = Template.bind({});
-
-Animated.args = {
-  animated: true,
-};
-
-export const Charging = Template.bind({});
-
-Charging.args = {
-  charging: true,
-};
-
-
-
-
-
+OrientationVertical.args = { orientation: 'vertical' };
