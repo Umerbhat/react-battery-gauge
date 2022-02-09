@@ -6,6 +6,7 @@ export const BATTERY_BODY = 'batteryBody';
 export const BATTERY_CAP = 'batteryCap';
 export const BATTERY_METER = 'batteryMeter';
 export const READING_TEXT = 'readingText';
+export const CHARGING_FLASH = 'chargingFlash';
 
 // clipPath ids
 export const CLIP_METER = 'clip_level_meter';

@@ -29,6 +29,15 @@ export type TGaugeCustom = {
     fontSize: number;
     showPercentage: boolean;
   };
+  chargingFlash: SVGProps<SVGPathElement> & {
+    scale?: number;
+    animated: boolean;
+    fill: string;
+    /**
+     * Fade animation duration in ms
+     */
+    animationDuration: number;
+  };
 };
 
 export type TGaugeCanvas = {
