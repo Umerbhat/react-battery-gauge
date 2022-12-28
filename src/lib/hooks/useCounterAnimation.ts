@@ -45,13 +45,13 @@ export const useCounterAnimation = ({
         );
         function getNewValue(animDirection: 'reverse' | 'forward' | 'both') {
           if (animDirection === 'reverse') {
-            return (1 - progress) * (value - startValue) + startValue;
+            return (1 - progress) * (value - counterValue) + counterValue;
           } else if (progress > 1 && animDirection === 'both') {
             return (
-              (MAX_PROGRESS - progress) * (value - startValue) + startValue
+              (MAX_PROGRESS - progress) * (value - counterValue) + counterValue
             );
           } else {
-            return progress * (value - startValue) + startValue;
+            return progress * (value - counterValue) + counterValue;
           }
         }
         let newValue = getNewValue(direction);
@@ -96,7 +96,7 @@ export const useCounterAnimation = ({
       };
       restartAnimation();
     }
-  }, [enabled, iterationCount]);
+  }, [enabled, iterationCount, value]);
 
   return enabled ? counterValue : value;
 };
