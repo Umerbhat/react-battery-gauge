@@ -7,7 +7,7 @@ This library is a SVG based react component for displaying battery status, ultra
 ![Short Demo](demo/demo1.gif)
 ## Storybook Demo
 
-[Click here](https://61c950606cc89f003a4379c2-jnjkdtdbkn.chromatic.com/?path=/story/gauge-battery--basic)
+[Click here](https://master--61c950606cc89f003a4379c2.chromatic.com/)
 
 ## Usage
 
