@@ -1,6 +1,6 @@
 import { BATTERY_ASPECT_RATIO, CANVAS_WIDTH } from './../constants/index';
 import { createContext } from 'react';
-import { TGaugeCanvas } from '../../typings';
+import type { TGaugeCanvas } from '../../typings';
 
 export const defaultState = {
   canvasWidth: CANVAS_WIDTH,
@@ -47,7 +47,7 @@ export const defaultState = {
       scale: undefined,
       fill: 'orange',
       animated: true,
-      animationDuration: 1000
+      animationDuration: 1000,
     },
   },
 };

@@ -50,7 +50,13 @@ export const BatteryLevel = () => {
         {noOfCells < 2 && gradFill && (
           <linearGradient id={'levelGradient' + clipPathHash}>
             {gradFill.map((item) => {
-              return <stop offset={item.offset + '%'} stopColor={item.color} />;
+              return (
+                <stop
+                  key={item.color}
+                  offset={item.offset + '%'}
+                  stopColor={item.color}
+                />
+              );
             })}
           </linearGradient>
         )}
@@ -87,6 +93,7 @@ export const BatteryLevel = () => {
           cellList.map((_item, index) => {
             return (
               <rect
+                key={index}
                 className={BATTERY_METER}
                 clipPath={`url(#${CLIP_METER + clipPathHash})`}
                 x={x + ((width + interCellsGap) / noOfCells) * index}

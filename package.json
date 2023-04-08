@@ -1,5 +1,5 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -14,6 +14,9 @@
     "battery gauge",
     "battery cells"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "files": [
     "dist",
     "src"
@@ -29,7 +32,7 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
+    "lint": "tsdx lint src ./src/index",
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
@@ -52,6 +55,13 @@
     "semi": true,
     "singleQuote": true,
     "trailingComma": "es5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "prettier/@typescript-eslint",
+      "plugin:prettier/recommended"
+    ]
   },
   "name": "react-battery-gauge",
   "author": "Umer Bhat",
