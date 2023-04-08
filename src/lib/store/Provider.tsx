@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { TGaugeCanvas } from '../../typings';
+import type { TGaugeCanvas } from '../../typings';
 import { Context } from './context';
 
 interface Props {
-  value: TGaugeCanvas & {clipPathHash: string};
+  value: TGaugeCanvas & { clipPathHash: string };
 }
 
 export const CanvasProvider: FC<Props> = ({ children, value }) => {

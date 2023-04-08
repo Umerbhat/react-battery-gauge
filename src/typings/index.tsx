@@ -54,3 +54,5 @@ export type TGaugeCanvas = {
 export type DeepPartial<T> = {
   [P in keyof T]?: Partial<T[P]>;
 };
+
+export type FormatValue = (value: number) => string | number;

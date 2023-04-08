@@ -10,7 +10,12 @@ import {
 import { Battery } from './lib/components/Battery';
 import { Canvas } from './lib/Canvas';
 import { BatteryLevel } from './lib/components/BatteryLevel';
-import { DeepPartial, TGaugeCanvas, TGaugeCustom } from './typings';
+import type {
+  DeepPartial,
+  FormatValue,
+  TGaugeCanvas,
+  TGaugeCustom,
+} from './typings';
 import { defaultState } from './lib/store/context';
 import { ReadingText } from './lib/components/ReadingText';
 import { useCounterAnimation } from './lib/hooks/useCounterAnimation';
@@ -61,6 +66,11 @@ export interface Props
    */
   charging?: boolean;
   /**
+   * Format the visible reading text as per your need
+   * Note: you can turn off percentage symbol from customizations
+   */
+  formatValue?: FormatValue;
+  /**
    * All components customization
    */
   customization?: DeepPartial<TGaugeCustom>;
@@ -77,6 +87,7 @@ export const BatteryGauge: FC<Props> = ({
   orientation = defaultState.orientation,
   animated = defaultState.animated,
   charging = defaultState.charging,
+  formatValue = (value) => value,
   ...restSvgProps
 }) => {
   const canvasHeight = Math.round(CANVAS_WIDTH * aspectRatio);
@@ -146,10 +157,10 @@ export const BatteryGauge: FC<Props> = ({
             : ''
         }
       >
-        {children}
         <Battery />
         <BatteryLevel />
-        {charging ? <Charging /> : <ReadingText />}
+        {charging ? <Charging /> : <ReadingText formatValue={formatValue} />}
+        {children}
       </g>
     </Canvas>
   );

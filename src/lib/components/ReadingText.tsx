@@ -13,8 +13,13 @@ import {
   getValueInPercentage,
   getVisibleCellsCount,
 } from '../utils';
+import type { FormatValue } from '../../typings';
 
-export const ReadingText = () => {
+type ReadingTextProps = {
+  formatValue: FormatValue;
+};
+export const ReadingText = (props: ReadingTextProps) => {
+  const { formatValue } = props;
   const {
     value,
     maxValue,
@@ -41,6 +46,7 @@ export const ReadingText = () => {
   const noOfVisibleCells = getVisibleCellsCount(value, maxValue, noOfCells);
   const noOfInvisibleCells = noOfCells - noOfVisibleCells;
   const widthPerCell = width / noOfCells;
+  const readingValue = getValueInPercentage(value, maxValue);
 
   const renderTextElement = (contrastColor: string, clipPathId: string) => {
     return (
@@ -62,7 +68,7 @@ export const ReadingText = () => {
         writingMode={orientation === 'vertical' ? 'tb' : 'lr'}
         {...otherTextProps}
       >
-        {getValueInPercentage(value, maxValue) + percentageSign}
+        {formatValue(readingValue) + percentageSign}
       </text>
     );
   };
