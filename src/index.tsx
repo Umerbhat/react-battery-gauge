@@ -33,6 +33,10 @@ export interface Props
    */
   maxValue?: TGaugeCanvas['maxValue'];
   /**
+   * Charging starting value
+   */
+  chargingStartValue?: TGaugeCanvas['chargingStartValue'];
+  /**
    * Changes orientation, keeping text horizontal
    */
   orientation?: TGaugeCanvas['orientation'];
@@ -82,6 +86,7 @@ export const BatteryGauge: FC<Props> = ({
   children,
   padding = defaultState.padding,
   value = defaultState.value,
+  chargingStartValue = defaultState.chargingStartValue,
   maxValue = defaultState.maxValue,
   customization = defaultState.customization,
   orientation = defaultState.orientation,
@@ -130,7 +135,7 @@ export const BatteryGauge: FC<Props> = ({
     enabled: animated,
   });
   const chargingValue = useCounterAnimation({
-    startValue: 1,
+    startValue: chargingStartValue,
     value: maxValue,
     enabled: charging,
     iterationCount: 'infinite',
@@ -144,6 +149,7 @@ export const BatteryGauge: FC<Props> = ({
       canvasHeight={canvasHeight}
       padding={canvasPadding}
       value={charging ? chargingValue : newValue}
+      chargingStartValue={chargingStartValue}
       maxValue={!maxValue ? 1 : maxValue}
       orientation={orientation}
       customization={allCustomization}

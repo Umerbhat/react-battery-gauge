@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Simple from './src/CellTypes/Simple';
 import Cell from './src/CellTypes/Cell';
+import ChargingCell from './src/CellTypes/ChargingCell';
 import Horizontal from './src/Orientations/Horizontal';
 import Vertical from './src/Orientations/Vertical';
 import ThinStrokeShadowText from './src/Customizations/ThinStrokeShadowText';
@@ -43,6 +44,7 @@ const App = () => {
       >
         <Simple />
         <Cell />
+        <ChargingCell />
       </div>
 
       <h1 style={{ textAlign: 'center' }}>Battery Orientations</h1>
