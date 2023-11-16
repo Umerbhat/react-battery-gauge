@@ -8,6 +8,7 @@ export const defaultState = {
   aspectRatio: BATTERY_ASPECT_RATIO,
   padding: 0,
   value: 50,
+  chargingStartValue: 1,
   maxValue: 100,
   clipPathHash: '',
   orientation: 'horizontal' as TGaugeCanvas['orientation'],
