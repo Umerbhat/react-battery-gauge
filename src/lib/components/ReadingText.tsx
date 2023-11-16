@@ -72,6 +72,10 @@ export const ReadingText = (props: ReadingTextProps) => {
       </text>
     );
   };
+  const areaFilledWidth =  Math.max(isCellTypeBattery
+  ? widthPerCell * noOfVisibleCells - interCellsGap / 2
+  : width * valueRatio, 0)
+ 
 
   return (
     <g>
@@ -81,9 +85,7 @@ export const ReadingText = (props: ReadingTextProps) => {
             x={x}
             y={y}
             width={
-              isCellTypeBattery
-                ? widthPerCell * noOfVisibleCells - interCellsGap / 2
-                : width * valueRatio
+              areaFilledWidth
             }
             height={height}
             clipPath={`url(#${CLIP_METER + clipPathHash})`}
@@ -93,9 +95,7 @@ export const ReadingText = (props: ReadingTextProps) => {
           <rect
             x={
               x +
-              (isCellTypeBattery
-                ? widthPerCell * noOfVisibleCells - interCellsGap / 2
-                : width * valueRatio)
+              areaFilledWidth
             }
             y={y}
             width={
