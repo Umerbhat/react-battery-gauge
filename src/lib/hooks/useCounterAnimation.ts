@@ -92,6 +92,7 @@ export const useCounterAnimation = ({
         iteration.current > 1 ? runNextIteration() : runFirstIteration();
       })();
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   useEffect(() => {
@@ -113,6 +114,7 @@ export const useCounterAnimation = ({
       };
       restartAnimation();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, iterationCount, value]);
 
   return enabled ? counterValue : value;

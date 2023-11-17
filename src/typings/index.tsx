@@ -45,7 +45,7 @@ export type TGaugeCanvas = {
   canvasHeight: number;
   padding: number;
   value: number;
-  chargingStartValue: number,
+  chargingStartValue: number;
   maxValue: number;
   orientation: 'horizontal' | 'vertical';
   customization: TGaugeCustom;

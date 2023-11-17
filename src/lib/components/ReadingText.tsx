@@ -20,13 +20,8 @@ type ReadingTextProps = {
 };
 export const ReadingText = (props: ReadingTextProps) => {
   const { formatValue } = props;
-  const {
-    value,
-    maxValue,
-    orientation,
-    customization,
-    clipPathHash,
-  } = useGaugeContext();
+  const { value, maxValue, orientation, customization, clipPathHash } =
+    useGaugeContext();
   const { x, y, width, height } = useLevelDimensions();
   const {
     fontFamily,
@@ -37,9 +32,8 @@ export const ReadingText = (props: ReadingTextProps) => {
     fontSize,
     ...otherTextProps
   } = customization[READING_TEXT];
-  const { lowBatteryValue, noOfCells, interCellsGap } = customization[
-    BATTERY_METER
-  ];
+  const { lowBatteryValue, noOfCells, interCellsGap } =
+    customization[BATTERY_METER];
   const percentageSign = showPercentage ? '%' : '';
   const valueRatio = value / maxValue;
   const isCellTypeBattery = noOfCells > 1;
@@ -72,10 +66,12 @@ export const ReadingText = (props: ReadingTextProps) => {
       </text>
     );
   };
-  const areaFilledWidth =  Math.max(isCellTypeBattery
-  ? widthPerCell * noOfVisibleCells - interCellsGap / 2
-  : width * valueRatio, 0)
- 
+  const areaFilledWidth = Math.max(
+    isCellTypeBattery
+      ? widthPerCell * noOfVisibleCells - interCellsGap / 2
+      : width * valueRatio,
+    0
+  );
 
   return (
     <g>
@@ -84,19 +80,14 @@ export const ReadingText = (props: ReadingTextProps) => {
           <rect
             x={x}
             y={y}
-            width={
-              areaFilledWidth
-            }
+            width={areaFilledWidth}
             height={height}
             clipPath={`url(#${CLIP_METER + clipPathHash})`}
           />
         </clipPath>
         <clipPath id={CLIP_METER_EMPTY + clipPathHash}>
           <rect
-            x={
-              x +
-              areaFilledWidth
-            }
+            x={x + areaFilledWidth}
             y={y}
             width={
               isCellTypeBattery
