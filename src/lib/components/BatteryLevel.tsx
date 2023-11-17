@@ -21,10 +21,8 @@ export const BatteryLevel = () => {
     noOfCells,
     interCellsGap,
   } = customization[BATTERY_METER];
-  const {
-    strokeWidth: bodyStrokeWidth,
-    cornerRadius: bodyCornerRadius,
-  } = customization[BATTERY_BODY];
+  const { strokeWidth: bodyStrokeWidth, cornerRadius: bodyCornerRadius } =
+    customization[BATTERY_BODY];
 
   const cellList = useMemo(() => {
     const noOfVisibleCells = getVisibleCellsCount(value, maxValue, noOfCells);

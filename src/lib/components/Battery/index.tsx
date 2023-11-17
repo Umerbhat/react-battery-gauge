@@ -4,13 +4,8 @@ import { useBatteryDimensions } from '../../hooks/useBatteryDimensions';
 import { useGaugeContext } from '../../hooks/useGaugeContext';
 
 export const Battery = () => {
-  const {
-    canvasWidth,
-    canvasHeight,
-    padding,
-    customization,
-    clipPathHash,
-  } = useGaugeContext();
+  const { canvasWidth, canvasHeight, padding, customization, clipPathHash } =
+    useGaugeContext();
 
   const {
     strokeColor: bodyStrokeColor,
@@ -27,9 +22,8 @@ export const Battery = () => {
     capToBodyRatio,
   } = customization[BATTERY_CAP];
 
-  const { bodyWidth, bodyHeight, capWidth, capHeight } = useBatteryDimensions(
-    capToBodyRatio
-  );
+  const { bodyWidth, bodyHeight, capWidth, capHeight } =
+    useBatteryDimensions(capToBodyRatio);
   return (
     <g>
       <defs>

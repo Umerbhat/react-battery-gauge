@@ -12,14 +12,10 @@ const iconWidth = 16.8; // As per path
 const iconHeight = 28.7;
 
 export default function Charging({ scale, ...pathProps }: Props): ReactElement {
-  const {
-    canvasWidth,
-    canvasHeight,
-    orientation,
-    customization,
-  } = useGaugeContext();
+  const { canvasWidth, canvasHeight, orientation, customization } =
+    useGaugeContext();
   const { strokeWidth } = customization[BATTERY_BODY];
-  const { fill, animated, animationDuration  } = customization[CHARGING_FLASH];
+  const { fill, animated, animationDuration } = customization[CHARGING_FLASH];
   const animatedOpacityPer = useCounterAnimation({
     value: 100,
     enabled: animated,
