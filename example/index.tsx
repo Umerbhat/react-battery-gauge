@@ -19,15 +19,15 @@ import Large from './src/Sizes/Large';
 const App = () => {
   return (
     <div>
-      <div style={{display: 'flex', justifyContent: "space-between"}}>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <a href="https://github.com/umerbhat/react-battery-gauge">Github</a>
         <a href="https://www.npmjs.com/package/react-battery-gauge">NPM</a>
       </div>
-      <div style={{display: "flex", justifyContent: "space-around"}}>
-        <div style={{backgroundColor: '#ccc', padding: 10, borderRadius: 8}}>
+      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <div style={{ backgroundColor: '#ccc', padding: 10, borderRadius: 8 }}>
           <code>npm i react-battery-gauge</code>
         </div>
-        <div style={{backgroundColor: '#ccc', padding: 10, borderRadius: 8,}}>
+        <div style={{ backgroundColor: '#ccc', padding: 10, borderRadius: 8 }}>
           <code>yarn add react-battery-gauge</code>
         </div>
       </div>
@@ -88,8 +88,8 @@ const App = () => {
         <AAAA />
         <C />
         <D />
-        <Small/>
-        <Large/>
+        <Small />
+        <Large />
       </div>
     </div>
   );
