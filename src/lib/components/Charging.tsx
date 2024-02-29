@@ -4,18 +4,17 @@ import { useCounterAnimation } from '../hooks/useCounterAnimation';
 import { useGaugeContext } from '../hooks/useGaugeContext';
 import { useLevelDimensions } from '../hooks/useLevelDimensions';
 
-interface Props extends React.SVGProps<SVGPathElement> {
-  scale?: number;
-}
+type Props = Omit<React.SVGProps<SVGPathElement>, "scale">
+
 // As per icon path
 const iconWidth = 16.8; // As per path
 const iconHeight = 28.7;
 
-export default function Charging({ scale, ...pathProps }: Props): ReactElement {
+export default function Charging(pathProps: Props): ReactElement {
   const { canvasWidth, canvasHeight, orientation, customization } =
     useGaugeContext();
   const { strokeWidth } = customization[BATTERY_BODY];
-  const { fill, animated, animationDuration } = customization[CHARGING_FLASH];
+  const { fill, scale, animated, animationDuration } = customization[CHARGING_FLASH];
   const animatedOpacityPer = useCounterAnimation({
     value: 100,
     enabled: animated,
