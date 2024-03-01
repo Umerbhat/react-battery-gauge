@@ -1,20 +1,27 @@
 # React Battery Gauge
 
 This library is a SVG based react component for displaying battery status, ultra lightweight, highly customizable with zero dependencies
+
 ## Live Demo
+
 [Click here](https://umerbhat.github.io/react-battery-gauge/)
+
 ## Short Demo
+
 ![Short Demo](demo/demo1.gif)
+
 ## Storybook Demo
 
 [Click here](https://master--61c950606cc89f003a4379c2.chromatic.com/)
 
 ## Usage
 
-Install it by running 
+Install it by running
+
 ```bash
 npm install react-battery-gauge # or yarn add react-battery-gauge
 ```
+
 ## Include the component:
 
 ```jsx
@@ -25,19 +32,21 @@ import BatteryGauge from 'react-battery-gauge'
 
 ## Options
 
-| Name          | Description                                                                                                                                              | Default      | type                      |
-|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|---------------------------|
-| value         | Meter value range [0-maxValue(100)]                                                                                                                      | 50           | number                    |
-| maxValue      | Meter max value                                                                                                                                          | 100          | number                    |
-| orientation   | Changes orientation, keeping text horizontal                                                                                                             | "horizontal" | "horizontal"\| "vertical" |
-| padding       | Padding of gauge within canvas                                                                                                                           | 5            | number                    |
-| size          | We don't like passing both width and height, can create unusual looking shape. Size will help gauge to achieve the desired size maintaining aspect ratio | 300          | number                    |
-| aspectRatio   | Gauge aspect ratio, At padding 0 easy to create battery types -> D = 0.56, C = 0.52, AA = 0.28, AAA = 0.23, AAAA = 0.19 , default C battery              | 0.52         | number                    |
-| animated      | Enable animation on mount                                                                                                                                | false        | boolean                   |
-| charging      | Enable charging mode                                                                                                                                 | false        | boolean                   |
-| customization | All individual components customisation                                                                                                                  | GaugeCustom  | Partial<TGaugeCustom>     |
+| Name          | Description                                                                                                                                              | Default          | type                      |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------------------- |
+| value         | Meter value range [0-maxValue(100)]                                                                                                                      | 50               | number                    |
+| maxValue      | Meter max value                                                                                                                                          | 100              | number                    |
+| orientation   | Changes orientation, keeping text horizontal                                                                                                             | "horizontal"     | "horizontal"\| "vertical" |
+| padding       | Padding of gauge within canvas                                                                                                                           | 5                | number                    |
+| size          | We don't like passing both width and height, can create unusual looking shape. Size will help gauge to achieve the desired size maintaining aspect ratio | 300              | number                    |
+| aspectRatio   | Gauge aspect ratio, At padding 0 easy to create battery types -> D = 0.56, C = 0.52, AA = 0.28, AAA = 0.23, AAAA = 0.19 , default C battery              | 0.52             | number                    |
+| animated      | Enable animation on mount                                                                                                                                | false            | boolean                   |
+| formatValue   | Format the visible reading text as per your need                                                                                                         | (value) => value | function                  |
+| charging      | Enable charging mode                                                                                                                                     | false            | boolean                   |
+| customization | All individual components customisation                                                                                                                  | GaugeCustom      | Partial<TGaugeCustom>     |
 
 ## Override any customization default values:
+
 ```js
 {
   batteryBody: {
@@ -78,10 +87,8 @@ import BatteryGauge from 'react-battery-gauge'
 }
 ```
 
-
 ## License
 
 MIT
 
 **Free Software, Your contribution is welcome!**
-
